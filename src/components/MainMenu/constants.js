@@ -1,26 +1,29 @@
-import {useMessageStore} from 'src/nostr/store/MessageStore'
-import {useAppStore} from 'stores/App'
+// import {useMessageStore} from 'src/nostr/store/MessageStore'
+// import {useAppStore} from 'stores/App'
 
 export const MENU_ITEMS = [
   {
-    name: 'Home',
-    path: '/home',
+    name: 'Messages',
+    path: '/messages',
+    icon: 'explore',
+    // signInRequired: true,
+    // indicator: () => useMessageStore().getNumUnread(useAppStore().myPubkey) > 0
+  },
+  {
+    name: 'Garden',
+    icon: 'topics',
+    path: '/garden',
   },
   // {
   //   name: 'Explore',
   //   path: '/explore',
   // },
-  {
-    name: 'Notifications',
-    path: '/notifications',
-    signInRequired: true,
-  },
-  {
-    name: 'Messages',
-    path: '/messages',
-    signInRequired: true,
-    indicator: () => useMessageStore().getNumUnread(useAppStore().myPubkey) > 0
-  },
+  // {
+  //   name: 'Notifications',
+  //   path: '/notifications',
+  //   signInRequired: true,
+  // },
+
   // {
   //   name: 'Settings',
   //   path: '/settings',

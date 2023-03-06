@@ -1,12 +1,12 @@
 const routes = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/messages',
   },
   {
-    path: '/home',
+    path: '/garden',
     component: () => import('pages/Feed.vue'),
-    name: 'home',
+    name: 'garden',
   },
   {
     path: '/profile/:pubkey(npub[a-z0-9A-Z]{59})/:tab(posts|replies|reactions|relays)?',
@@ -30,7 +30,8 @@ const routes = [
   },
   {
     path: '/messages',
-    component: () => import('pages/messages/Messages.vue'),
+    component: () => import('pages/Feed.vue'),
+
     name: 'messages',
   },
   {

@@ -12,7 +12,7 @@
 const ESLintPlugin = require('eslint-webpack-plugin')
 
 
-const { configure } = require('quasar/wrappers');
+const { configure } = require('quasar/wrappers')
 
 module.exports = configure(function (ctx) {
   return {
@@ -81,11 +81,15 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
     devServer: {
+      host: '0.0.0.0',
       server: {
         type: 'http'
       },
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
+      headers: {
+       'Access-Control-Allow-Origin': '*'
+      }
     },
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
@@ -231,7 +235,6 @@ module.exports = configure(function (ctx) {
       },
 
 
-
       chainWebpackPreload (chain) {
         chain.plugin('eslint-webpack-plugin')
           .use(ESLintPlugin, [{ extensions: [ 'js' ] }])
@@ -239,4 +242,4 @@ module.exports = configure(function (ctx) {
 
     }
   }
-});
+})

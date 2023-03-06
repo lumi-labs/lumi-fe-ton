@@ -11,7 +11,7 @@
           v-if="
             !hideItemsRequiringSignIn || !route.signInRequired || app.isSignedIn
           "
-          :icon="route.name.toLowerCase()"
+          :icon="(route.icon || route.name).toLowerCase()"
           :to="route.path"
           :enabled="route.enabled !== false"
           :indicator="route.indicator && route.indicator()"
