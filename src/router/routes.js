@@ -9,6 +9,11 @@ const routes = [
     name: 'garden',
   },
   {
+    path: '/community',
+    component: () => import('pages/community/community.vue'),
+    name: 'community',
+  },
+  {
     path: '/profile/:pubkey(npub[a-z0-9A-Z]{59})/:tab(posts|replies|reactions|relays)?',
     component: () => import('pages/profile/Profile.vue'),
     name: 'profile',

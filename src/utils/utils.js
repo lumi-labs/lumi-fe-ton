@@ -48,3 +48,9 @@ export function shortenBech32(str) {
   let keepStart = isBech32(str) ? 9 : 5
   return str.substr(0, keepStart) + '…' + str.substr(-5)
 }
+
+const regex = /^0x[a-fA-F0-9]{40}$/
+
+export function validateWalletAddress(address) {
+  return regex.test(address)
+}

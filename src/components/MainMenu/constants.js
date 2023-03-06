@@ -14,6 +14,11 @@ export const MENU_ITEMS = [
     icon: 'topics',
     path: '/garden',
   },
+  {
+    name: 'Community',
+    icon: 'bookmarks',
+    path: '/community',
+  },
   // {
   //   name: 'Explore',
   //   path: '/explore',

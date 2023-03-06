@@ -35,6 +35,15 @@
         size="sm"
       />
     </div>
+    <div class="input">
+      <q-input
+        v-model="wallet"
+        :label="$t('Wallet Address')"
+        dense
+        :error="addressError"
+        error-message="Please input right wallet address"
+      />
+    </div>
     <div class="buttons">
       <button type="submit" :disabled="!changed" class="btn btn-sm btn-primary">
         {{ $t("Save") }}
@@ -57,6 +66,8 @@ import Nip05 from 'src/utils/Nip05'
 import EventBuilder from 'src/nostr/EventBuilder'
 import { $t } from 'src/boot/i18n'
 
+import {validateWalletAddress} from 'src/utils/utils'
+
 export default {
   name: 'ProfileSettings',
   components: {},
@@ -73,6 +84,8 @@ export default {
       picture: '',
       nip05: '',
       verified: false,
+      wallet: '',
+      addressError: false
     }
   },
   computed: {
@@ -106,6 +119,10 @@ export default {
         about: this.about || undefined,
         picture: this.picture || undefined,
         nip05: this.nip05 || undefined,
+        wallet: this.wallet || undefined
+      }
+      if (validateWalletAddress(this.wallet)) {
+        return
       }
       const event = EventBuilder.metadata(this.pubkey, metadata).build()
       if (!(await this.app.signEvent(event))) return
@@ -116,6 +133,10 @@ export default {
         })
       }
     },
+    checkWallet() {
+      if (!this.wallet) return true
+      this.addressError = !validateWalletAddress(this.wallet)
+    }
   },
   watch: {
     profile() {
@@ -124,6 +145,9 @@ export default {
     async nip05() {
       this.verified = await Nip05.verify(this.pubkey, this.nip05)
     },
+    wallet() {
+      this.checkWallet()
+    }
   },
   mounted() {
     this.setDataFromProfile()
