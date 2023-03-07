@@ -1,17 +1,22 @@
 <template>
   <q-page class="community">
-    <h1>community</h1>
+    <PageHeader logo class="page-header">
+    </PageHeader>
+    <CommunityItem></CommunityItem>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+import PageHeader from 'components/PageHeader.vue'
+import CommunityItem from 'components/Community/CommunityItem.vue'
 
 
 export default defineComponent({
   name: 'Community',
   components: {
-
+    CommunityItem,
+    PageHeader
   },
   setup() {
     return {
