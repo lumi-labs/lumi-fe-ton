@@ -12,6 +12,9 @@
       <BaseIcon :icon="liked ? 'like_filled' : 'like'" />
       <span>{{ stats.reactions || "" }}</span>
     </div>
+    <div class="action-item donate"  @click.stop="donate">
+      <BaseIcon icon="donate" />
+    </div>
   </div>
 </template>
 
@@ -73,6 +76,9 @@ export default {
     },
     like() {
       return !this.liked ? this.publishLike() : this.deleteLike()
+    },
+    donate() {
+      console.log('donate')
     },
     async publishLike() {
       const event = EventBuilder.reaction(this.note, this.app.myPubkey).build()
@@ -165,6 +171,14 @@ export default {
         }
         span {
           color: $post-action-red;
+        }
+      }
+      &.donate {
+        svg {
+          fill: $post-action-yellow;
+        }
+        span {
+          color: $post-action-yellow;
         }
       }
     }

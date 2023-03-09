@@ -10,6 +10,8 @@ export const EventKind = {
   SHARE: 6,
   REACTION: 7,
   CHATROOM: 42,
+  CREATECHANNEL: 40,
+  CHANNELMESSAGE: 42
 }
 
 export const TagType = {

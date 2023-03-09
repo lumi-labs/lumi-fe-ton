@@ -22,6 +22,23 @@ export default class EventBuilder {
     })
   }
 
+  static createRoom(author, content) {
+    return new EventBuilder({
+      kind: EventKind.CREATECHANNEL,
+      pubkey: author,
+      content
+    })
+  }
+
+  static sendMessage(author, content, id) {
+    return new EventBuilder({
+      kind: EventKind.CHANNELMESSAGE,
+      pubkey: author,
+      content: 'testtttt',
+      tags: [['e', id]]
+    })
+  }
+
   static reply(ancestor, author, content) {
     const tags = []
 
