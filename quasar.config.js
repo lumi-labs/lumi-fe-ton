@@ -89,6 +89,16 @@ module.exports = configure(function (ctx) {
       open: true, // opens browser window automatically
       headers: {
        'Access-Control-Allow-Origin': '*'
+      },
+      proxy: {
+        // 将所有以/api开头的请求代理到jsonplaceholder
+        '/api': {
+          target: 'http://some.api.target.com:7070',
+          changeOrigin: true,
+          pathRewrite: {
+            '^/api': ''
+          }
+        }
       }
     },
 

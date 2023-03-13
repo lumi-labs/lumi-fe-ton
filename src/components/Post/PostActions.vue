@@ -15,20 +15,25 @@
     <div class="action-item donate"  @click.stop="donate">
       <BaseIcon icon="donate" />
     </div>
+    <div >
+      <Donate ref="donateDialog"></Donate>
+    </div>
   </div>
 </template>
 
 <script>
 import BaseIcon from 'components/BaseIcon/index.vue'
+import Donate from './Donate.vue'
 import { useNostrStore } from 'src/nostr/NostrStore'
 import { useStatStore } from 'src/nostr/store/StatStore'
 import { useAppStore } from 'stores/App'
 import EventBuilder from 'src/nostr/EventBuilder'
 import { $t } from 'src/boot/i18n'
+import { ref } from 'vue'
 
 export default {
   name: 'PostActions',
-  components: { BaseIcon },
+  components: { BaseIcon, Donate },
   emits: ['comment', 'repost'],
   props: {
     note: {
@@ -45,6 +50,8 @@ export default {
       app: useAppStore(),
       stat: useStatStore(),
       nostr: useNostrStore(),
+      showDialog: ref(true),
+      count: ref('')
     }
   },
   computed: {
@@ -79,6 +86,8 @@ export default {
     },
     donate() {
       console.log('donate')
+      // this.showDialog = true
+      this.$refs.donateDialog.show()
     },
     async publishLike() {
       const event = EventBuilder.reaction(this.note, this.app.myPubkey).build()
@@ -202,9 +211,4 @@ export default {
   }
 }
 
-@media screen and (max-width: $phone) {
-  .post-actions {
-    max-width: unset;
-  }
-}
 </style>
